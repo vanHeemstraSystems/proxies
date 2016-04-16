@@ -8,14 +8,12 @@
 module.exports = function(input) {
   console.log('paths - called');
   var _Me = {};
-  var path = require('../libraries/path'); // hard coded for now
-  var paths = require('../paths/paths'); // hard coded for now
-  var Promise = require(path.join(paths.libraries, '/bluebird.js')); // hard coded for now
-  // Create a new Promise
-  return new Promise(function(resolve) {
-    console.log('paths - inside Promise');
-    var paths = require('../paths/paths');
-    _Me.paths = paths;
+  var path = require('../libraries/path'); // hard coded for now; this should become a call to a function that returns a promise
+  _Me.paths = require('../paths/paths'); // hard coded for now; this should become a call to a function that returns a promise
+  var promise = require(path.join(_Me.paths.libraries, '/bluebird.js')); // hard coded for now; this should become a call to a function that returns a promise
+  // Create a new promise
+  return new promise(function(resolve) {
+    console.log('paths - inside promise');
     resolve(_Me.paths); // Note: return only the paths property
   }); // eof Promise
 }

@@ -8,16 +8,19 @@
 module.exports = function(input) {
   console.log('libraries - called');
   var _Me = {};
-  var path = require('../libraries/path'); // hard coded for now
-  var paths = require('../paths/paths'); // hard coded for now
-  var Promise = require(path.join(paths.libraries, '/bluebird.js')); // hard coded for now
-  // Create a new Promise
-  return new Promise(function(resolve) {
-    console.log('libraries - inside Promise');
-    var path = require('../libraries/path');
-	var promise = require(path.join(paths.libraries, '/bluebird.js'));
-    _Me.path = path;
-	_Me.promise = promise;
-    resolve(_Me);
-  }); // eof Promise
+  var paths = require(__dirname+'/paths.js'); // A function that returns a promise
+    paths()
+      .then(function(paths) {
+        // required libraries
+        _Me.path = require('../libraries/path'); // hard coded for now// hard coded for now; this should become a call to a function that returns a promise
+        _Me.promise = require(_Me.path.join(paths.libraries, '/bluebird.js')); // hard coded for now// hard coded for now; this should become a call to a function that returns a promise
+        // Create a new promise
+        return new _Me.promise(function(resolve) {
+          console.log('libraries - inside promise');
+          // all other libraries
+          _Me.bodyParser = require(_Me.path.join(paths.libraries, '/body-parser.js')); // this should become a call to a function that returns a promise
+          _Me.express = require(_Me.path.join(paths.libraries, '/express.js')); // this should become a call to a function that returns a promise
+          resolve(_Me);
+        }); // eof promise
+      }); //eof paths
 }

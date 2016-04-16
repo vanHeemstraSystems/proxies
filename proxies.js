@@ -8,7 +8,7 @@
 module.exports = function(input) {
   console.log('proxies - called');
   var _Me = {};
-  var _Me.input = input;
+  _Me.input = input;
   var libraries = require(__dirname+'/libraries.js'); // A function that returns a Promise
     libraries()
       .then(function(libraries) {
