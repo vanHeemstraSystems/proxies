@@ -5,16 +5,15 @@
  *
  * output: resolve - a Promise
  */
-//module.exports = function(input) {
 module.exports = function(input) {  
   console.log('paths - called');
   var _Me = {};
-  var path = require('../libraries/path'); // hard coded for now; this should become a call to a function that returns a promise
-  _Me.paths = require('../paths/paths'); // hard coded for now; this should become a call to a function that returns a promise
-  var promise = require(path.join(_Me.paths.libraries, '/promise.js')); // hard coded for now; this should become a call to a function that returns a promise
-  // Create a new promise
+  var path = require('../libraries/path'); //TEMP hard coded
+  var paths = require('../paths/paths'); //TEMP hard coded
+  _Me.paths = paths;
+  var promise = require(path.join(paths.libraries, '/promise.js')); //TEMP hard coded
   return new promise(function(resolve) {
-    console.log('paths - inside promise'); 
-    resolve(_Me.paths); // Note: return only the paths property
+    console.log('paths - resolve(_Me): ', _Me);
+    resolve(_Me.paths); // Note: return only _Me.paths here
   }); // eof promise
 } // eof module

@@ -8,19 +8,15 @@
 module.exports = function(input) {  
   console.log('libraries - called');
   var _Me = {};
-  var paths = require(__dirname+'/paths.js'); // A function that returns a Promise
-    paths()
-    //console.log('proxies - paths: ', paths);
-      .then(function(paths) {
-        var _paths = paths
-        console.log('proxies - inside paths then');
-      }); //eof paths
-  _paths = require('../paths/paths'); // hard coded for now
-  _Me.path = require('../libraries/path');
-  _Me.promise = require(_Me.path.join(_paths.libraries, '/promise.js'));
-  return new _Me.promise(function(resolve) {
-    // put module properties and logic here
-    console.log('libraries - resolve');
+  var path = require('../libraries/path'); //TEMP hard coded
+  _Me.path = path;
+  var paths = require('../paths/paths'); //TEMP hard coded
+  var promise = require(path.join(paths.libraries, '/promise.js')); //TEMP hard coded
+  _Me.promise = promise;
+  _Me.express = require(_Me.path.join(paths.libraries, '/express.js'));
+  _Me.bodyParser = require(_Me.path.join(paths.libraries, '/body-parser.js'));
+  return new promise(function(resolve) {
+    console.log('libraries - resolve(_Me): ', _Me);
     resolve(_Me);
   }); // eof promise
 } // eof module
