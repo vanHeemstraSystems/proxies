@@ -5,22 +5,22 @@
  *
  * output: resolve - a Promise
  */
-module.exports = function(input) {
+module.exports = function(input) {  
   console.log('libraries - called');
   var _Me = {};
-  _Me.input = input;
-  // required libraries
-  var path = require('../libraries/path');
-  _Me.path = path;
-  var paths = require('../paths/paths'); // hard coded for now
-  var promise = require(path.join(paths.libraries, '/promise.js')); // hard coded for now
-  _Me.promise = promise;
-  // Create a new promise
-  return new promise(function(resolve) {
-    console.log('libraries - inside promise');
-    // all other libraries
-    _Me.bodyParser = require(_Me.path.join(paths.libraries, '/body-parser.js')); // this should become a call to a function that returns a promise
-    _Me.express = require(_Me.path.join(paths.libraries, '/express.js')); // this should become a call to a function that returns a promise
+  var paths = require(__dirname+'/paths.js'); // A function that returns a Promise
+    paths()
+    //console.log('proxies - paths: ', paths);
+      .then(function(paths) {
+        var _paths = paths
+        console.log('proxies - inside paths then');
+      }); //eof paths
+  _paths = require('../paths/paths'); // hard coded for now
+  _Me.path = require('../libraries/path');
+  _Me.promise = require(_Me.path.join(_paths.libraries, '/promise.js'));
+  return new _Me.promise(function(resolve) {
+    // put module properties and logic here
+    console.log('libraries - resolve');
     resolve(_Me);
   }); // eof promise
-}
+} // eof module
