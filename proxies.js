@@ -14,13 +14,18 @@ module.exports = function(input) {
   var _libraries = require(__dirname+'/libraries.js'); // A function that returns a Promise
   var _paths = require(__dirname+'/paths.js'); // A function that returns a Promise
   var join = promise.join;
-  join(_libraries(), _paths(), function(libraries, paths) {
-    _Me.libraries = libraries;
-    _Me.paths = paths;
-    return new promise(function(resolve) {
-      // put module properties and logic here
-      console.log('proxies - resolve(_Me): ', _Me);
-      resolve(_Me);
-    }); // eof promise
-  }); // eof join
+  return new promise(function(resolve) {
+    join(_libraries(), _paths(), function(libraries, paths) {
+      _Me.libraries = libraries;
+      _Me.paths = paths;
+    }); // eof join
+    console.log('proxies - resolve(_Me): ', _Me);
+    resolve(_Me);
+  })
+  .catch(function(error) {
+    console.log('proxies - error: ', error);
+  })
+  .finally(function() {
+    console.log('proxies - finally');
+  }); // eof promise
 } // eof module
