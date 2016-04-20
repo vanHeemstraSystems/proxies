@@ -13,11 +13,13 @@ module.exports = function(input) {
   var promise = require(path.join(paths.libraries, '/promise.js')); //TEMP hard coded
   var _libraries = require(__dirname+'/libraries.js'); // A function that returns a Promise
   var _paths = require(__dirname+'/paths.js'); // A function that returns a Promise
+  var _resources = require(__dirname+'/resources.js'); // A function that returns a Promise
   var join = promise.join;
   return new promise(function(resolve) {
-    join(_libraries(), _paths(), function(libraries, paths) {
+    join(_libraries(), _paths(), _resources(), function(libraries, paths, resources) {
       _Me.libraries = libraries;
       _Me.paths = paths;
+      _Me.resources = resources;
     }); // eof join
     console.log('proxies - resolve(_Me): ', _Me);
     resolve(_Me);
