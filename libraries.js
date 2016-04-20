@@ -18,5 +18,8 @@ module.exports = function(input) {
   return new promise(function(resolve) {
     console.log('libraries - resolve(_Me): ', _Me);
     resolve(_Me);
+  })
+  .catch(function(error) {
+    console.log('libraries - error: ', error);
   }); // eof promise
 } // eof module

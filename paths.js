@@ -15,5 +15,8 @@ module.exports = function(input) {
   return new promise(function(resolve) {
     console.log('paths - resolve(_Me): ', _Me);
     resolve(_Me.paths); // Note: return only _Me.paths here
+  })
+  .catch(function(error) {
+    console.log('paths - error: ', error);
   }); // eof promise
 } // eof module
