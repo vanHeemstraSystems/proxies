@@ -13,13 +13,15 @@ module.exports = function(input) {
   var promise = require(path.join(paths.libraries, '/promise.js')); //TEMP hard coded
   var _configurations = require(__dirname+'/configurations.js'); // A function that returns a Promise
   var _libraries = require(__dirname+'/libraries.js'); // A function that returns a Promise
+  var _mappings = require(__dirname+'/mappings.js'); // A function that returns a Promise
   var _paths = require(__dirname+'/paths.js'); // A function that returns a Promise
   var _resources = require(__dirname+'/resources.js'); // A function that returns a Promise
   var join = promise.join;
   return new promise(function(resolve) {
-    join(_configurations(), _libraries(), _paths(), _resources(), function(configurations, libraries, paths, resources) {
+    join(_configurations(), _libraries(), _mappings(), _paths(), _resources(), function(configurations, libraries, mappings, paths, resources) {
       _Me.configurations = configurations;
       _Me.libraries = libraries;
+      _Me.mappings = mappings;
       _Me.paths = paths;
       _Me.resources = resources;
     }); // eof join
