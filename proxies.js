@@ -1,37 +1,29 @@
 /*
- * filename: proxies.js
+ * proxies.js
  *
  * input: input - an Object
  *
  * output: resolve - a Promise
  */
-module.exports = function(input) {  
+module.exports = function() {
   console.log('proxies - called');
   var _Me = {};
-  var path = require('../libraries/path'); //TEMP hard coded
-  var paths = require('../paths/paths'); //TEMP hard coded
-  var promise = require(path.join(paths.libraries, '/promise.js')); //TEMP hard coded
-  var _configurations = require(__dirname+'/configurations.js'); // A function that returns a Promise
-  var _libraries = require(__dirname+'/libraries.js'); // A function that returns a Promise
-  var _mappings = require(__dirname+'/mappings.js'); // A function that returns a Promise
-  var _paths = require(__dirname+'/paths.js'); // A function that returns a Promise
-  var _resources = require(__dirname+'/resources.js'); // A function that returns a Promise
+  var path = require('../libraries/path');
+  var paths = require('../paths/paths'); 
+  var promise = require(path.join(paths.libraries, '/promise.js'));
+  var _proxy = require(__dirname+'/proxy.js');
   var join = promise.join;
   return new promise(function(resolve) {
-    join(_configurations(), _libraries(), _mappings(), _paths(), _resources(), function(configurations, libraries, mappings, paths, resources) {
-      _Me.configurations = configurations;
-      _Me.libraries = libraries;
-      _Me.mappings = mappings;
-      _Me.paths = paths;
-      _Me.resources = resources;
+    join(_proxy(), function(proxy) {
+      _Me.proxyy = proxy;
     }); // eof join
     console.log('proxies - resolve(_Me): ', _Me);
     resolve(_Me);
-  })
+  }) // eof promise
   .catch(function(error) {
     console.log('proxies - error: ', error);
-  })
+  }) // eof catch
   .finally(function() {
     console.log('proxies - finally');
-  }); // eof promise
+  }); // eof finally
 } // eof module
