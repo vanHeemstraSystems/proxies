@@ -53,4 +53,5 @@ Proxy.prototype.resources = function() {
   return new ProxyResources();
 }
 
+console.log('index - exports new Proxy()');
 module.exports = new Proxy();
