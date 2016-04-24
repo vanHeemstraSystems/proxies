@@ -22,10 +22,11 @@ Proxy.prototype.configurations = function() {
 }
 
 /**
- * Create a new ProxyLibaries object.
+ * Create a new ProxyLibraries object.
  * @return {ProxyLibraries}
  */
-Proxy.prototype.libaries = function() {
+ 
+Proxy.prototype.libraries = function() {
   return new ProxyLibraries();
 }
 
@@ -53,5 +54,5 @@ Proxy.prototype.resources = function() {
   return new ProxyResources();
 }
 
-console.log('index - exports new Proxy()');
-module.exports = new Proxy();
+//ORIGINAL module.exports = new Proxy();
+module.exports = function() { return new Proxy(); }

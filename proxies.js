@@ -1,29 +1,21 @@
 /*
  * proxies.js
- *
- * input: input - an Object
- *
- * output: resolve - a Promise
  */
-module.exports = function() {
-  console.log('proxies - called');
-  var _Me = {};
-  var path = require('../libraries/path');
-  var paths = require('../paths/paths'); 
-  var promise = require(path.join(paths.libraries, '/promise.js'));
-  var _proxy = require(__dirname+'/proxy.js');
-  var join = promise.join;
-  return new promise(function(resolve) {
-    join(_proxy(), function(proxy) {
-      _Me.proxyy = proxy;
-    }); // eof join
-    console.log('proxies - resolve(_Me): ', _Me);
-    resolve(_Me);
-  }) // eof promise
-  .catch(function(error) {
-    console.log('proxies - error: ', error);
-  }) // eof catch
-  .finally(function() {
-    console.log('proxies - finally');
-  }); // eof finally
-} // eof module
+var ProxiesProxy = require(__dirname+'/proxy.js');
+
+/**
+ * Create a new Proxies that let users create sub-proxies.
+ * @return {Libraries}
+ */
+function Proxies() { }
+
+/**
+ * Create a new ProxiesProxy object.
+ * @return {ProxiesProxy}
+ */
+Proxies.prototype.proxy = function() {
+  return new ProxiesProxy();
+}
+
+//ORIGINAL module.exports = new Proxies();
+module.exports = function() { return new Proxies(); }

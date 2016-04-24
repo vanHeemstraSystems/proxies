@@ -1,18 +1,21 @@
-function libaries() {
-  console.log('libraries - called');
-  var _Me = {};
-  var path = require('../libraries/path'); //TEMP hard coded
-  _Me.path = path;
-  var paths = require('../paths/paths'); //TEMP hard coded
-  var promise = require(path.join(paths.libraries, '/promise.js')); //TEMP hard coded
-  _Me.promise = promise;
-  _Me.express = require(_Me.path.join(paths.libraries, '/express.js'));
-  _Me.bodyParser = require(_Me.path.join(paths.libraries, '/body-parser.js'));
-  return new promise(function(resolve) {
-    console.log('libraries - resolve(_Me): ', _Me);
-    resolve(_Me);
-  })
-  .catch(function(error) {
-    console.log('libraries - error: ', error);
-  }); // eof promise
+/*
+ * libraries.js
+ */
+var LibrariesLibrary = require(__dirname+'/library.js');
+
+/**
+ * Create a new Libraries that let users create sub-libraries.
+ * @return {Libraries}
+ */
+function Libraries() { }
+
+/**
+ * Create a new LibrariesLibrary object.
+ * @return {LibrariesLibrary}
+ */
+Libraries.prototype.library = function() {
+  return new LibrariesLibrary();
 }
+
+//ORIGINAL module.exports = new Libraries();
+module.exports = function() { return new Libraries(); }
