@@ -5,7 +5,7 @@ var ProxiesProxy = require(__dirname+'/proxy.js');
 
 /**
  * Create a new Proxies that let users create sub-proxies.
- * @return {Libraries}
+ * @return {Proxies}
  */
 function Proxies() { }
 
