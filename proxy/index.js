@@ -2,6 +2,7 @@
  * index.js
  */
 var ProxyConfigurations = require(__dirname+'/configurations.js');
+var ProxyDatabases = require(__dirname+'/databases.js');
 var ProxyErrors = require(__dirname+'/errors.js');
 var ProxyEvents = require(__dirname+'/events.js');
 var ProxyLibraries = require(__dirname+'/libraries.js');
@@ -25,6 +26,14 @@ function Proxy() { }
  */
 Proxy.prototype.configurations = function() {
   return new ProxyConfigurations();
+}
+
+/**
+ * Create a new ProxyDatabases object.
+ * @return {ProxyDatabases}
+ */
+Proxy.prototype.databases = function() {
+  return new ProxyDatabases();
 }
 
 /**
@@ -108,5 +117,4 @@ Proxy.prototype.utilities = function() {
   return new ProxyUtilities();
 }
 
-//ORIGINAL module.exports = new Proxy();
-module.exports = function() { return new Proxy(); }
+module.exports = Proxy;
