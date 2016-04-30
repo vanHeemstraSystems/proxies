@@ -3,6 +3,7 @@
  */
 var ProxyConfigurations = require(__dirname+'/configurations.js');
 var ProxyErrors = require(__dirname+'/errors.js');
+var ProxyEvents = require(__dirname+'/events.js');
 var ProxyLibraries = require(__dirname+'/libraries.js');
 var ProxyMappings = require(__dirname+'/mappings.js');
 var ProxyPaths = require(__dirname+'/paths.js');
@@ -32,6 +33,14 @@ Proxy.prototype.configurations = function() {
  */
 Proxy.prototype.errors = function() {
   return new ProxyErrors();
+}
+
+/**
+ * Create a new ProxyEvents object.
+ * @return {ProxyEvents}
+ */
+Proxy.prototype.events = function() {
+  return new ProxyEvents();
 }
 
 /**
