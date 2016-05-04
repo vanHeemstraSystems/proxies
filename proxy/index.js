@@ -13,6 +13,7 @@ var ProxyPaths = require(__dirname+'/paths.js');
 var ProxyQueries = require(__dirname+'/queries.js');
 var ProxyResources = require(__dirname+'/resources.js');
 var ProxySchemas = require(__dirname+'/schemas.js');
+var ProxyServers = require(__dirname+'/servers.js');
 var ProxyTypes = require(__dirname+'/types.js');
 var ProxyUtilities = require(__dirname+'/utilities.js');
 
@@ -117,6 +118,14 @@ Proxy.prototype.resources = function() {
  */
 Proxy.prototype.schemas = function() {
   return new ProxySchemas();
+}
+
+/**
+ * Create a new ProxyServers object.
+ * @return {ProxyServers}
+ */
+Proxy.prototype.servers = function() {
+  return new ProxyServers();
 }
 
 /**
