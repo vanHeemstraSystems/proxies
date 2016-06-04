@@ -1,30 +1,39 @@
 /*
  * index.js
  */
-var ProxyConfigurations = require(__dirname+'/configurations.js');
-var ProxyDatabases = require(__dirname+'/databases.js');
-var ProxyDocumentations = require(__dirname+'/documentations.js');
-var ProxyErrors = require(__dirname+'/errors.js');
-var ProxyEvents = require(__dirname+'/events.js');
-var ProxyFeeds = require(__dirname+'/feeds.js');
-var ProxyInstructions = require(__dirname+'/instructions.js');
-var ProxyLayers = require(__dirname+'/layers.js');
-var ProxyLibraries = require(__dirname+'/libraries.js');
-var ProxyMains = require(__dirname+'/mains.js');
-var ProxyMappings = require(__dirname+'/mappings.js');
-var ProxyPaths = require(__dirname+'/paths.js');
-var ProxyQueries = require(__dirname+'/queries.js');
-var ProxyResources = require(__dirname+'/resources.js');
-var ProxySchemas = require(__dirname+'/schemas.js');
-var ProxyServers = require(__dirname+'/servers.js');
-var ProxyTypes = require(__dirname+'/types.js');
-var ProxyUtilities = require(__dirname+'/utilities.js');
+var ProxyAssets = require(__dirname + '/assets.js');
+var ProxyConfigurations = require(__dirname + '/configurations.js');
+var ProxyDatabases = require(__dirname + '/databases.js');
+var ProxyDocumentations = require(__dirname + '/documentations.js');
+var ProxyErrors = require(__dirname + '/errors.js');
+var ProxyEvents = require(__dirname + '/events.js');
+var ProxyFeeds = require(__dirname + '/feeds.js');
+var ProxyInstructions = require(__dirname + '/instructions.js');
+var ProxyLayers = require(__dirname + '/layers.js');
+var ProxyLibraries = require(__dirname + '/libraries.js');
+var ProxyMains = require(__dirname + '/mains.js');
+var ProxyMappings = require(__dirname + '/mappings.js');
+var ProxyPaths = require(__dirname + '/paths.js');
+var ProxyQueries = require(__dirname + '/queries.js');
+var ProxyResources = require(__dirname + '/resources.js');
+var ProxySchemas = require(__dirname + '/schemas.js');
+var ProxyServers = require(__dirname + '/servers.js');
+var ProxyTypes = require(__dirname + '/types.js');
+var ProxyUtilities = require(__dirname + '/utilities.js');
 
 /**
  * Create a new Proxy that let users create sub-proxies.
  * @return {Proxy}
  */
 function Proxy() { }
+
+/**
+ * Create a new ProxyAssets object.
+ * @return {ProxyAssets}
+ */
+Proxy.prototype.assets = function() {
+  return new ProxyAssets();
+}
 
 /**
  * Create a new ProxyConfigurations object.
